@@ -1,0 +1,64 @@
+<!-- templates/export_app/mango_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mango Export List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <div class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold text-center text-green-600 mb-6">
+        Rajshahi Mango Export
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {% for mango in mangoes %}
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <img
+            src="https://cdn.create.vista.com/api/media/small/117985134/stock-photo-pile-fresh-mango-fruits-closeup-mangoes-background"
+            alt="Mango"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-4">
+            <h5 class="text-lg font-semibold">{{ mango.variety }}</h5>
+            <p class="text-gray-600">{{ mango.description }}</p>
+            <p class="font-bold text-green-700 mt-2">
+              Price: ${{ mango.price }}
+            </p>
+            <p>ID: {{ mango.order_id }}</p>
+
+            <div class="mt-4 flex space-x-3">
+              <a
+                href="{% url 'mango_update' pk=mango.order_id %}"
+                class="px-4 py-2 bg-blue-500 text-white rounded-md"
+              >
+                Edit
+              </a>
+
+              <a
+                href="{% url 'mango_delete' pk=mango.order_id %}"
+                class="px-4 py-2 bg-red-500 text-white rounded-md"
+              >
+                Delete
+              </a>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <p class="text-center col-span-2 text-gray-500">
+          No mangoes available.
+        </p>
+        {% endfor %}
+      </div>
+      <div class="text-center mt-6">
+        <a
+          href="{% url 'mango_create' %}"
+          class="px-6 py-3 bg-green-500 text-white rounded-md"
+        >
+          Add New Mango
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

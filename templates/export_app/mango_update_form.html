@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Mango</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <div class="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+      <h1 class="text-2xl font-bold text-center text-green-600 mb-6">
+        Edit Mango
+      </h1>
+
+      <form method="post" class="space-y-6">
+        {% csrf_token %}
+
+        <!-- Variety Select Dropdown -->
+        <div class="space-y-2">
+          <label for="variety" class="block text-gray-700">Variety</label>
+          <select
+            id="variety"
+            name="variety"
+            class="w-full p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200 ease-in-out"
+          >
+            <option value="himshagor" {% if form.variety.value == 'himshagor' %}selected{% endif %}>Himshagor</option>
+            <option value="lengra" {% if form.variety.value == 'lengra' %}selected{% endif %}>Lengra</option>
+            <option value="amrupali" {% if form.variety.value == 'amrupali' %}selected{% endif %}>Amrupali</option>
+            <option value="fazli" {% if form.variety.value == 'fazli' %}selected{% endif %}>Fazli</option>
+            <option value="harivanga" {% if form.variety.value == 'harivanga' %}selected{% endif %}>Harivanga</option>
+            <option value="katimon" {% if form.variety.value == 'katimon' %}selected{% endif %}>Katimon</option>
+            <option value="bari4" {% if form.variety.value == 'bari4' %}selected{% endif %}>Bari4</option>
+          </select>
+        </div>
+
+        <!-- Description Input -->
+        <div class="space-y-2">
+          <label for="description" class="block text-gray-700">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            class="w-full p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200 ease-in-out"
+            rows="4"
+          >{{ form.description.value }}</textarea>
+        </div>
+
+        <!-- Price Input -->
+        <div class="space-y-2">
+          <label for="price" class="block text-gray-700">Price</label>
+          <input
+            id="price"
+            name="price"
+            type="number"
+            step="0.01"
+            class="w-full p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200 ease-in-out"
+            placeholder="Enter Price"
+            value="{{ form.price.value }}"
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="w-full py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition duration-200 ease-in-out"
+        >
+          Save
+        </button>
+      </form>
+
+      <!-- Back to List Link -->
+      <div class="text-center mt-4">
+        <a href="{% url 'mango_list' %}" class="text-blue-500 hover:underline">
+          Back to List
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
