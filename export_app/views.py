@@ -27,7 +27,7 @@ def mango_create(request):
 
 # Update View
 def mango_update(request, pk):
-    mango = get_object_or_404(MangoExport, pk=pk)  # Retrieve the mango object
+    mango = MangoExport.objects.filter(pk=pk).get() #get_object_or_404(MangoExport, pk=pk)  # Retrieve the mango object
     
     if request.method == 'POST':
         form = MangoExportForm(request.POST, instance=mango)  # Pass the instance for updating
@@ -36,9 +36,7 @@ def mango_update(request, pk):
             form.save()  # Save the updated mango object
             return redirect('mango_list')  # Redirect to the mango list page after successful update
         
-        # form.save()  # Save the updated mango object
-        # return redirect('mango_list')  # Redirect to the mango list page after successful update
-    
+        
     else:
         form = MangoExportForm(instance=mango)  # Prefill the form with the existing mango data
     

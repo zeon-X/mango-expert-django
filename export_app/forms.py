@@ -6,8 +6,8 @@ class MangoExportForm(forms.ModelForm):
         model = MangoExport
         fields = ['variety', 'description', 'price']
 
-    def clean_variety(self):
-        variety = self.cleaned_data['variety']
-        if MangoExport.objects.filter(variety=variety).exists():
-            raise forms.ValidationError("Variety name already exists!")
-        return variety
+    # def clean_variety(self):
+    #     variety = self.cleaned_data['variety']
+    #     if MangoExport.objects.filter(variety=variety).exists():
+    #         raise forms.ValidationError("Variety name already exists!")
+    #     return variety
